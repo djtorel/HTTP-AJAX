@@ -22,7 +22,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {console.log(friends)}
       <FriendsList friends={friends} />
     </div>
   );
