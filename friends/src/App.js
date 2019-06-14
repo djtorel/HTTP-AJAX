@@ -10,6 +10,7 @@ const API_URL = 'http://localhost:5000';
 
 const App = () => {
   const [friends, setFriends] = useState([]);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
   const getFriends = () =>
     axios
@@ -25,6 +26,10 @@ const App = () => {
     getFriends();
   }, []);
 
+  const selectFriend = id => {
+    setSelectedFriend(friends.filter(friend => friend.id === id)[0]);
+  };
+
   const addFriend = friend => {
     axios
       .post(`${API_URL}/friends`, friend)
@@ -36,14 +41,29 @@ const App = () => {
       });
   };
 
+  const updateFriend = friend => {
+    axios
+      .put(`${API_URL}/friends/${friend.id}`, friend)
+      .then(res => {
+        getFriends();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
   return (
     <div className="App">
       <div>
-        <FriendsList friends={friends} />
+        <FriendsList friends={friends} selectFriend={selectFriend} />
       </div>
 
       <div>
-        <FriendForm addFriend={addFriend} />
+        <FriendForm
+          addFriend={addFriend}
+          friend={selectedFriend}
+          updateFriend={updateFriend}
+        />
       </div>
     </div>
   );
