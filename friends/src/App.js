@@ -26,7 +26,7 @@ const App = () => {
     getFriends();
   }, []);
 
-  const selectFriend = id => {
+  const selectFriendUpdate = id => {
     setSelectedFriend(friends.filter(friend => friend.id === id)[0]);
   };
 
@@ -52,10 +52,25 @@ const App = () => {
       });
   };
 
+  const deleteFriend = id => {
+    axios
+      .delete(`${API_URL}/friends/${id}`)
+      .then(res => {
+        getFriends();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
   return (
     <div className="App">
       <div>
-        <FriendsList friends={friends} selectFriend={selectFriend} />
+        <FriendsList
+          friends={friends}
+          selectFriendUpdate={selectFriendUpdate}
+          deleteFriend={deleteFriend}
+        />
       </div>
 
       <div>

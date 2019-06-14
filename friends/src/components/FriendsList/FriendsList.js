@@ -1,17 +1,18 @@
 import React from 'react';
 import Friend from './Friend';
 
-const FriendsList = ({ friends, selectFriend }) => (
+const FriendsList = ({ friends, selectFriendUpdate, deleteFriend }) => (
   <div>
     {friends.map(({ id, name, age, email }) => (
-      <div key={id} onClick={() => selectFriend(id)}>
-        <Friend
-          name={name}
-          age={age}
-          email={email}
-          onClick={() => console.log(id)}
-        />
-      </div>
+      <Friend
+        key={id}
+        name={name}
+        age={age}
+        email={email}
+        id={id}
+        selectFriendUpdate={selectFriendUpdate}
+        deleteFriend={deleteFriend}
+      />
     ))}
   </div>
 );
