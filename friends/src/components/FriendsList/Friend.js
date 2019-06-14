@@ -3,9 +3,9 @@ import { jsx, css } from '@emotion/core';
 
 const container = css`
   margin: 15px auto 0 auto;
-  max-width: 50%;
+  max-width: 400px;
   padding: 20px;
-  border: solid black 1px;
+  border: solid #9a9a9a 1px;
   border-radius: 3px;
   background-color: #3a3a3a;
   display: flex;
@@ -18,7 +18,7 @@ const ageDiv = css`
 `;
 
 const friendWrapper = css`
-  min-width: 60%;
+  min-width: 70%;
 `;
 
 const Friend = ({ id, name, age, email }) => (
