@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FriendForm = () => {
+const FriendForm = ({ addFriend }) => {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [email, setEmail] = useState('');
@@ -12,6 +12,7 @@ const FriendForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    addFriend({ name, age, email });
   };
 
   return (
